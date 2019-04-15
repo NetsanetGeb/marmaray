@@ -27,17 +27,17 @@
         <maven.checkstyle.version>2.16</maven.checkstyle.version>
         <com.puppycrawl.tools.version>6.9</com.puppycrawl.tools.version>
         <cassandra.version>3.0.10</cassandra.version>
-        <spark.version>2.1.0</spark.version>
+        <spark.version>2.4.0</spark.version>
         <!-- we have an external dependency on "com.holdenkarau" for running spark tests for which
              we are not creating private release.-->
-        <spark.test.version>2.1.0</spark.test.version>
+        <spark.test.version>2.4.0</spark.test.version>
         <log4j.version>1.2.17</log4j.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <mockito.version>1.10.19</mockito.version>
         <powermock.version>1.7.3</powermock.version>
         <cdh.version>5.7.2</cdh.version>
-        <hadoop.version>2.6.0</hadoop.version>
-        <hive.version>1.1.0</hive.version>
+        <hadoop.version>2.8.2.7</hadoop.version>
+        <hive.version>2.3.0.1</hive.version>
         <cobertura.version>2.6</cobertura.version>
         <commons.logging.version>1.2</commons.logging.version>
         <hoodie.version>0.4.1</hoodie.version>
@@ -96,6 +96,17 @@
 
 
     <repositories>
+        <repository>
+            <id>Hops</id>
+            <name>Hops Repo</name>
+            <url>https://bbc1.sics.se/archiva/repository/Hops/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
         <repository>
             <id>cloudera-repo-releases</id>
             <url>https://repository.cloudera.com/artifactory/public/</url>
@@ -440,9 +451,9 @@
         </dependency>
         <!-- Hadoop Libraries -->
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
+            <groupId>io.hops</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>${hadoop.version}-cdh${cdh.version}</version>
+            <version>${hadoop.version}</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -460,9 +471,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
+            <groupId>io.hops</groupId>
             <artifactId>hadoop-hdfs</artifactId>
-            <version>${hadoop.version}-cdh${cdh.version}</version>
+            <version>${hadoop.version}</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -480,33 +491,33 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
+            <groupId>io.hops</groupId>
             <artifactId>hadoop-auth</artifactId>
-            <version>${hadoop.version}-cdh${cdh.version}</version>
+            <version>${hadoop.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.hive</groupId>
+            <groupId>io.hops.hive</groupId>
             <artifactId>hive-common</artifactId>
-            <version>${hive.version}-cdh${cdh.version}</version>
+            <version>${hive.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
+            <groupId>io.hops</groupId>
             <artifactId>hadoop-mapreduce-client-core</artifactId>
-            <version>${hadoop.version}-cdh${cdh.version}</version>
+            <version>${hadoop.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
+            <groupId>io.hops</groupId>
             <artifactId>hadoop-mapreduce-client-common</artifactId>
-            <version>${hadoop.version}-cdh${cdh.version}</version>
+            <version>${hadoop.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.hive</groupId>
+            <groupId>io.hops.hive</groupId>
             <artifactId>hive-exec</artifactId>
-            <version>${hive.version}-cdh${cdh.version}</version>
+            <version>${hive.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.codehaus.jackson</groupId>
@@ -586,7 +597,7 @@
         <dependency>
             <groupId>com.holdenkarau</groupId>
             <artifactId>spark-testing-base_2.11</artifactId>
-            <version>${spark.test.version}_0.6.0</version>
+            <version>${spark.test.version}_0.11.0</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
