@@ -36,7 +36,7 @@ import org.apache.avro.SchemaBuilder;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.generic.GenericRecordBuilder;
-import org.apache.spark.streaming.kafka010.KafkaTestUtils;
+import org.apache.spark.streaming.kafka.KafkaTestUtils;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.FileNotFoundException;
@@ -68,7 +68,7 @@ public class KafkaTestHelper {
         final int partitions) {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(topicName));
         // Create topic.
-        kafkaTestUtils.createTopic(topicName, partitions);
+        kafkaTestUtils.createTopic(topicName);
     }
 
     public static ProducerConfig getProducerConfig(@NonNull final KafkaTestUtils kafkaTestUtils) {

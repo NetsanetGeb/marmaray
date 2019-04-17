@@ -29,10 +29,10 @@ import org.apache.parquet.hadoop.ParquetFileReader;
 import org.apache.parquet.hadoop.metadata.ParquetMetadata;
 import org.apache.parquet.schema.MessageType;
 import org.apache.spark.sql.execution.datasources.parquet.ParquetSchemaConverter;
+import org.apache.spark.sql.execution.datasources.parquet.ParquetToSparkSchemaConverter;
 import org.apache.spark.sql.internal.SQLConf;
 import org.apache.spark.sql.types.StructType;
 import org.hibernate.validator.constraints.NotEmpty;
-
 import java.io.IOException;
 
 @Slf4j
@@ -96,7 +96,7 @@ public final class SchemaUtil {
                 ParquetFileReader.readFooter(new Configuration(),
                         parquetFilePath.get(), ParquetMetadataConverter.NO_FILTER);
         final MessageType messageType = metadata.getFileMetaData().getSchema();
-        final ParquetSchemaConverter converter = new ParquetSchemaConverter(new SQLConf());
+        final ParquetToSparkSchemaConverter converter = new ParquetToSparkSchemaConverter(new SQLConf());
         final StructType structType = converter.convert(messageType);
         return structType;
     }
